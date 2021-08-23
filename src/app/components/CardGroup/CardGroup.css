@@ -1,0 +1,61 @@
+.card__group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin: 20px 5px 0 0;
+  padding: 10px 0;
+}
+
+.card__group.is-active {
+  border: 1px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to left, var(--purple), var(--pink));
+}
+
+.card__group__cards {
+  position: relative;
+  width: 125px;
+  height: 200px;
+  padding: 10px;
+}
+
+.card__group__cards > .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card__group .card:nth-child(1) {
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  transform: rotate(5deg);
+  top: 0;
+  left: 15px;
+}
+
+.card__group .card:nth-child(2) {
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  transform: rotate(5deg);
+  top: 0;
+  left: 10px;
+}
+
+.card__group .card:nth-child(3) {
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  transform: rotate(5deg);
+  top: 0;
+  left: 5px;
+}
+
+.card__group__value {
+  color: white;
+}

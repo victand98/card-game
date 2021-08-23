@@ -1,0 +1,82 @@
+.card {
+  perspective: 1000px;
+  width: 100%;
+  height: 100%;
+}
+
+.card__inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+
+.card__inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 1px 3px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card__face--front {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--primary),
+    var(--secondary)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light);
+  font-size: 4rem;
+  user-select: none;
+}
+
+.card__face--back {
+  background-color: var(--light);
+  transform: rotateY(180deg);
+  padding: 30px 15px;
+}
+
+.card__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: 500;
+  line-height: 0;
+  font-size: 3rem;
+  user-select: none;
+}
+
+.card__content .suit-top {
+  align-self: flex-start;
+}
+
+.card__content .value {
+  align-self: center;
+}
+
+.card__content .suit-bottom {
+  align-self: flex-end;
+  transform: rotate(180deg);
+}
+
+.suit-red {
+  color: var(--red);
+}
+
+.suit-black {
+  color: var(--dark);
+}
