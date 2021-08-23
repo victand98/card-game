@@ -1,0 +1,68 @@
+.game__details {
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game__details .title {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  margin: 10px 0;
+  font-weight: 500;
+}
+.game__details .won-games,
+.game__details .lost-games {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.won-games svg,
+.lost-games svg {
+  font-size: 1.3rem;
+}
+
+.game__details .indications {
+  margin: 15px 0;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+}
+
+.game__details .indications svg {
+  font-size: 1.8rem;
+  margin-right: 5px;
+}
+
+.game__details .restart-game {
+  padding: 10px 20px;
+  background-color: var(--primary);
+  color: var(--dark);
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.1s ease-in-out;
+}
+
+.game__details .restart-game:hover {
+  background-color: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.game__details .restart-game:disabled {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.restart-game svg {
+  font-size: 1.2rem;
+}
+
+.restart-game span {
+  margin-left: 5px;
+}

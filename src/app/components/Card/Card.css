@@ -7,7 +7,7 @@
 .card__inner {
   width: 100%;
   height: 100%;
-  transition: transform 1s;
+  transition: transform 0.7s;
   transform-style: preserve-3d;
   cursor: pointer;
   position: relative;
@@ -45,7 +45,7 @@
 .card__face--back {
   background-color: var(--light);
   transform: rotateY(180deg);
-  padding: 30px 15px;
+  padding: 15px 7px;
 }
 
 .card__content {
@@ -55,20 +55,22 @@
   flex-direction: column;
   justify-content: space-between;
   font-weight: 500;
-  line-height: 0;
-  font-size: 3rem;
   user-select: none;
+  line-height: 0;
 }
 
-.card__content .suit-top {
+.card__content .suit {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  line-height: 1.2rem;
+  align-items: center;
+}
+.card__content .suit.suit-top {
   align-self: flex-start;
 }
 
-.card__content .value {
-  align-self: center;
-}
-
-.card__content .suit-bottom {
+.card__content .suit.suit-bottom {
   align-self: flex-end;
   transform: rotate(180deg);
 }
@@ -79,4 +81,9 @@
 
 .suit-black {
   color: var(--dark);
+}
+
+.card__content .value {
+  font-size: 3rem;
+  align-self: center;
 }

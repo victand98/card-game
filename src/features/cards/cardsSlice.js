@@ -6,6 +6,8 @@ const initialState = {
   status: false,
   startedPlaying: false,
   groups: [],
+  wonGames: 0,
+  lostGames: 0,
 };
 
 export const cardsSlice = createSlice({
@@ -15,10 +17,16 @@ export const cardsSlice = createSlice({
     splitCards: (state, action) => {
       state.groups = action.payload;
       state.status = true;
+      state.startedPlaying = false;
     },
     activeGroup: (state, action) => {
       state.startedPlaying = true;
       state.groups[action.payload].active = true;
+    },
+    flip: (state, action) => {
+      state.groups[action.payload.groupIndex].cards[
+        action.payload.cardIndex
+      ].isFlipped = true;
     },
     toggleActiveGroup: (state, action) => {
       state.groups[action.payload.currentGroupIndex].active = false;
@@ -44,18 +52,10 @@ export const startGame = () => (dispatch, getState) => {
   dispatch(splitCards(group));
 };
 
-export const flitCard = (value) => (dispatch, getState) => {
-  const groupIndex = getState().cards.groups.findIndex(
-    (group) => group.value === value
-  );
-
-  dispatch(activeGroup(groupIndex));
-};
-
 const freshDeck = () => {
   return SUITS.flatMap((suit) => {
     return VALUES.map((value) => {
-      return { suit, value };
+      return { suit, value, isFlipped: false };
     });
   });
 };
@@ -78,7 +78,15 @@ export const moveCard = (cartVatue, groupValue) => (dispatch, getState) => {
   dispatch(toggleActiveGroup({ currentGroupIndex, newGroupIndex }));
 };
 
-export const { splitCards, activeGroup, toggleActiveGroup } =
+export const flipCard = (cardIndex, groupValue) => (dispatch, getState) => {
+  const groupIndex = getState().cards.groups.findIndex(
+    (group) => group.value === groupValue
+  );
+
+  dispatch(flip({ cardIndex, groupIndex }));
+};
+
+export const { splitCards, activeGroup, toggleActiveGroup, flip } =
   cardsSlice.actions;
 
 export default cardsSlice.reducer;
