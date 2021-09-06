@@ -16,10 +16,10 @@ export const Card = memo(
     const onClickCardFront = () => {
       if (startedPlaying === false && canFlip) {
         dispatch(startToPlay(groupValue));
-        dispatch(flipCard(cardIndex, groupValue));
+        dispatch(flipCard(cardIndex, groupValue, value));
       }
       if (active && canFlip) {
-        dispatch(flipCard(cardIndex, groupValue));
+        dispatch(flipCard(cardIndex, groupValue, value));
       }
     };
 

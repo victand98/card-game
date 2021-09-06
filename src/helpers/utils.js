@@ -1,3 +1,7 @@
+import { toast } from "react-toastify";
+import { AiTwotoneTrophy } from "react-icons/ai";
+import { BiSad } from "react-icons/bi";
+
 export const chunkify = (a, n, balanced) => {
   if (n < 2) return [a];
 
@@ -39,3 +43,13 @@ export const shuffle = (array) => {
 
   return array;
 };
+
+export const successToast = (message) =>
+  toast.success(message, {
+    icon: AiTwotoneTrophy,
+  });
+
+export const dangerToast = (message) =>
+  toast.error(message, {
+    icon: BiSad,
+  });

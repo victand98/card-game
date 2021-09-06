@@ -12,15 +12,24 @@
   margin: 10px 0;
   font-weight: 500;
 }
+
+.statistics {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
 .game__details .won-games,
-.game__details .lost-games {
+.game__details .lost-games,
+.game__details .turned-over-cards {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
 .won-games svg,
-.lost-games svg {
+.lost-games svg,
+.turned-over-cards svg {
   font-size: 1.3rem;
 }
 
@@ -57,6 +66,7 @@
 .game__details .restart-game:disabled {
   background-color: var(--light);
   color: var(--dark);
+  opacity: 0.7;
 }
 
 .restart-game svg {

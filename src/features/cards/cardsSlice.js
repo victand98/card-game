@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { SUITS, VALUES } from "../../helpers/constants";
-import { chunkify, shuffle } from "../../helpers/utils";
+import {
+  chunkify,
+  dangerToast,
+  shuffle,
+  successToast,
+} from "../../helpers/utils";
 
 const initialState = {
   status: false,
@@ -8,6 +13,7 @@ const initialState = {
   groups: [],
   wonGames: 0,
   lostGames: 0,
+  turnedOverCards: 0,
 };
 
 export const cardsSlice = createSlice({
@@ -18,6 +24,7 @@ export const cardsSlice = createSlice({
       state.groups = action.payload;
       state.status = true;
       state.startedPlaying = false;
+      state.turnedOverCards = 0;
     },
     activeGroup: (state, action) => {
       state.startedPlaying = true;
@@ -27,6 +34,7 @@ export const cardsSlice = createSlice({
       state.groups[action.payload.groupIndex].cards[
         action.payload.cardIndex
       ].isFlipped = true;
+      state.turnedOverCards++;
     },
     toggleActiveGroup: (state, action) => {
       state.groups[action.payload.currentGroupIndex].active = false;
@@ -34,6 +42,14 @@ export const cardsSlice = createSlice({
       state.groups[action.payload.newGroupIndex].cards.unshift(
         state.groups[action.payload.currentGroupIndex].cards.pop()
       );
+    },
+    wonGame: (state, action) => {
+      state.wonGames++;
+      state.status = false;
+    },
+    lostGame: (state, action) => {
+      state.lostGames++;
+      state.status = false;
     },
   },
 });
@@ -78,15 +94,45 @@ export const moveCard = (cartVatue, groupValue) => (dispatch, getState) => {
   dispatch(toggleActiveGroup({ currentGroupIndex, newGroupIndex }));
 };
 
-export const flipCard = (cardIndex, groupValue) => (dispatch, getState) => {
-  const groupIndex = getState().cards.groups.findIndex(
-    (group) => group.value === groupValue
-  );
+export const flipCard =
+  (cardIndex, groupValue, cardValue) => (dispatch, getState) => {
+    const groupIndex = getState().cards.groups.findIndex(
+      (group) => group.value === groupValue
+    );
+    dispatch(flip({ cardIndex, groupIndex }));
 
-  dispatch(flip({ cardIndex, groupIndex }));
-};
+    let nextGroup = [];
+    if (groupValue === cardValue) {
+      nextGroup = getState().cards.groups[groupIndex];
+    } else {
+      nextGroup = getState().cards.groups.find(
+        (group) => group.value === cardValue
+      );
+    }
 
-export const { splitCards, activeGroup, toggleActiveGroup, flip } =
-  cardsSlice.actions;
+    const nextGroupflippedCards = nextGroup.cards.filter(
+      (card) => card.isFlipped
+    );
+
+    if (nextGroup.cards.length === nextGroupflippedCards.length) {
+      if (getState().cards.turnedOverCards < 52) {
+        dangerToast("Has Perdido, vuelve a intentarlo.");
+        dispatch(moveCard(cardValue, groupValue));
+        dispatch(lostGame());
+      } else {
+        successToast("Felicidades, has ganado.");
+        dispatch(wonGame());
+      }
+    }
+  };
+
+export const {
+  splitCards,
+  activeGroup,
+  toggleActiveGroup,
+  flip,
+  wonGame,
+  lostGame,
+} = cardsSlice.actions;
 
 export default cardsSlice.reducer;
