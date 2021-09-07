@@ -8,7 +8,6 @@ import "./Home.css";
 
 export const Home = () => {
   const cards = useSelector((state) => state.cards);
-  console.log(`cards`, cards);
 
   const dispatch = useDispatch();
   useEffect(() => {

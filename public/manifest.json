@@ -1,6 +1,6 @@
 {
   "short_name": "Card Game App",
-  "name": "Card Game App",
+  "name": "Card Game App made with ReactJs",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#f9d423",
+  "background_color": "hsl(230, 17%, 14%)"
 }

@@ -15,7 +15,8 @@
 
 .statistics {
   display: flex;
-  gap: 25px;
+  flex-direction: column;
+  gap: 15px;
   align-items: center;
 }
 
@@ -75,4 +76,12 @@
 
 .restart-game span {
   margin-left: 5px;
+}
+
+@media (min-width: 768px) {
+  .statistics {
+    flex-direction: row;
+    gap: 25px;
+    align-items: center;
+  }
 }

@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  margin: 20px 5px 0 0;
+  margin-top: 10px;
   padding: 10px 0;
 }
 
@@ -17,7 +17,6 @@
   position: relative;
   width: 125px;
   height: 200px;
-  padding: 10px;
 }
 
 .card__group__cards > .card {
@@ -74,4 +73,5 @@
 
 .card__group__value {
   color: white;
+  user-select: none;
 }

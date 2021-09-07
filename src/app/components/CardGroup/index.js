@@ -5,7 +5,12 @@ import "./CardGroup.css";
 
 export const CardGroup = memo(({ cards, active, value }) => {
   return (
-    <div className={`card__group ${active ? "is-active" : ""}`}>
+    <div
+      className={`card__group group_${value} ${active ? "is-active" : ""}`}
+      style={{
+        gridArea: `group_${value}`,
+      }}
+    >
       <div className="card__group__cards">
         {cards.map((card, index) => (
           <Card
@@ -18,7 +23,7 @@ export const CardGroup = memo(({ cards, active, value }) => {
           />
         ))}
       </div>
-      <div className="card__group__value">Grupo de: {value}</div>
+      <div className="card__group__value">Grupo: {value}</div>
     </div>
   );
 });

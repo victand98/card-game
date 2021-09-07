@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { scroller } from "react-scroll";
 import { SUITS, VALUES } from "../../helpers/constants";
 import {
   chunkify,
@@ -117,12 +118,17 @@ export const flipCard =
     if (nextGroup.cards.length === nextGroupflippedCards.length) {
       if (getState().cards.turnedOverCards < 52) {
         dangerToast("Has Perdido, vuelve a intentarlo.");
-        dispatch(moveCard(cardValue, groupValue));
         dispatch(lostGame());
       } else {
         successToast("Felicidades, has ganado.");
         dispatch(wonGame());
       }
+      dispatch(moveCard(cardValue, groupValue));
+      scroller.scrollTo(`home`, {
+        duration: 400,
+        delay: 0,
+        smooth: "easeInOutQuart",
+      });
     }
   };
 

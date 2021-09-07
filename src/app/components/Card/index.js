@@ -1,6 +1,8 @@
 import React, { memo } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import { scroller } from "react-scroll";
+
 import {
   startToPlay,
   moveCard,
@@ -24,7 +26,15 @@ export const Card = memo(
     };
 
     const onClickCardBack = () => {
-      if (active && canFlip) dispatch(moveCard(value, groupValue));
+      if (active && canFlip) {
+        dispatch(moveCard(value, groupValue));
+        scroller.scrollTo(`group_${value}`, {
+          duration: 400,
+          delay: 0,
+          smooth: "easeInOutQuart",
+          offset: -100,
+        });
+      }
     };
 
     return (

@@ -53,7 +53,11 @@ export const GameDetails = () => {
         {startedPlaying
           ? status
             ? "Jugando..."
-            : "El juego ha terminado"
+            : `El juego ha terminado.${
+                52 - turnedOverCards === 0
+                  ? " Has volteado todas las cartas"
+                  : ` Te faltaron ${52 - turnedOverCards} cartas para ganar.`
+              }`
           : "Seleccione cualquier grupo de cartas para comenzar el juego"}
       </p>
 
